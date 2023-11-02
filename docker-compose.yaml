@@ -1,0 +1,36 @@
+version: '3.8'
+
+services:
+  tritonserver:
+    build:
+      context: ./server
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+    shm_size: '10gb'
+    runtime: nvidia
+    network_mode: host
+    ulimits:
+      memlock:
+        soft: -1
+        hard: -1
+      stack:
+        soft: 67108864
+        hard: 67108864
+    volumes:
+      - "${HOME}/triton/server/model-registry:/model-registry"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    command: ["tritonserver", "--model-repository=/model-registry", "--log-verbose=2"]
+
+  client:
+    build:
+      context: ./client
+    volumes:
+      - "${HOME}/triton/client/:/client"
+      - "/var/run/docker.sock:/var/run/docker.sock"
+    stdin_open: true
+    tty: true
+    depends_on:
+      - tritonserver
+    command: ["/bin/bash"]
