@@ -37,6 +37,13 @@ model-registry
         +-- model.pt
 ```
 
+## Warning
+
+You **should not have empty directories** in your Triton model repository.
+
+Refer this issue: https://github.com/triton-inference-server/server/issues/5786#issuecomment-1626340702
+
+
 ## Reference
 
 - [triton-inference-server/tutorials](https://github.com/triton-inference-server/tutorials/tree/main/Quick_Deploy/HuggingFaceTransformers)
