@@ -21,14 +21,14 @@ Then you can get a response from triton server!
     "model_name": "falcon7b",
     "model_version": "1",
     "outputs": [
-            {
-                "name": "text_output",
-                "datatype": "BYTES",
-                "shape": [1],
-                "data": ["How can you be sure that you are getting the best deal on your car"]
-            }
-        ]
-    }
+        {
+            "name": "text_output",
+            "datatype": "BYTES",
+            "shape": [1],
+            "data": ["How can you be sure that you are getting the best deal on your car"]
+        }
+    ]
+}
 ```
 
 If you want to pass a request without creat a client container, plase add `network_mode: host` in docker-compose.yaml.
